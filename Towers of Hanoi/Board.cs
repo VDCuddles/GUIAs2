@@ -12,14 +12,25 @@ namespace Towers_of_Hanoi
         Disk[,] board; //condition says TWO dimentional array            
         ArrayList movements;
         Disk[] disks; //Array of disks
+		Disk diskToReturn;
+		int updateLevel = 3;
+		Disk oldDisk = null;
+		Disk newDisk = null;
+		int oldPos = 0;
+		int newPos = 0;
+		const int poleStart = 128;
+		const int poleGap = 180;
+		const int deckHeight = 291;
+		const int diskHeight = 24;
 
-        private const int NUM_DISKS = 4;
+		private const int NUM_DISKS = 4;
         private const int NUM_PEGS = 3;
 
         public Board()
         {
             board = new Disk[NUM_PEGS, NUM_DISKS];
             movements = new ArrayList();
+			diskToReturn = null;
 
             //Array of disk objects
             disks = new Disk[NUM_DISKS];
@@ -98,17 +109,36 @@ namespace Towers_of_Hanoi
         public bool canDrop(Disk aDisk, int aPeg)
         {
 
-            return true;
+           return true;
         }
 
 
         public void move(Disk aDisk, int newLevel)
         {
 
-        }
+			oldDisk = aDisk;
+			oldPos = aDisk.getPegNum();
+			newDisk = aDisk;
+			newPos = aDisk.getPegNum();
+			newDisk.setPegNum(newLevel);
+			updateLevel = 3;
+
+			for (int i = 0; i < 4; i++)
+			{
+				if (board[newLevel, i] == null)
+				{
+					updateLevel = i;
+					newDisk.setLevel(updateLevel);
+					break;
+				}
+			}
+
+			board[newLevel, updateLevel] = aDisk;
+
+		}
 
 
-        public string allMovesAsString()
+		public string allMovesAsString()
         {
             return "dummy";  // Dummy return to avoid syntax error - must be changed
         }
@@ -116,14 +146,45 @@ namespace Towers_of_Hanoi
 
         public void Display()
         {
-  
-        }
+			MessageBox.Show("oldDisk.getDiameter() = " + (oldDisk.getDiameter()) + 
+				"\r\r" + "oldDisk.getPegNum() = " + (oldDisk.getPegNum()) + 
+				"\r\r" + "oldDisk.getLevel() = " + (oldDisk.getLevel())
+				);
 
 
-        public Disk FindDisk(Label aLabel)
+			oldDisk.getLabel().Hide();
+			oldDisk.getLabel().Left = poleStart + ((newDisk.getPegNum() - 1) * poleGap) - (oldDisk.getDiameter() / 2);
+			oldDisk.getLabel().Top = deckHeight - (newDisk.getLevel() * diskHeight);
+			oldDisk.getLabel().Show();
+			board[oldDisk.getPegNum(), oldDisk.getLevel()] = null;
+
+
+
+			MessageBox.Show("newDisk.getPegNum() = " + (newDisk.getPegNum()) + 
+				"\r\r" + "newDisk.getLevel() = " + (newDisk.getLevel())
+				);
+
+		}
+
+
+		public Disk FindDisk(Label aLabel)
         {
-            Disk dummy = null;
-            return dummy;  // Dummy return to avoid syntax error - must be changed
+
+			for (int ipole = 0; ipole < 3; ipole++)
+			{
+				for (int jlevel = 0; jlevel < 4; jlevel++)
+				{
+					if (board[ipole, jlevel] != null)
+					{
+						if (board[ipole, jlevel].thisDisk == aLabel)
+						{
+							diskToReturn = board[ipole, jlevel];
+							break;
+						}
+					}
+				}
+			}
+            return diskToReturn;  // Dummy return to avoid syntax error - must be changed
         }
 
 

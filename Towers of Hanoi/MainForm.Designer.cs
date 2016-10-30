@@ -38,6 +38,9 @@
 			this.lblPeg2 = new System.Windows.Forms.Label();
 			this.lblPeg3 = new System.Windows.Forms.Label();
 			this.btnReset = new System.Windows.Forms.Button();
+			this.lblMoves = new System.Windows.Forms.Label();
+			this.txtMoveCount = new System.Windows.Forms.TextBox();
+			this.btnAnimate = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// txtMoves
@@ -56,6 +59,7 @@
 			this.lblDisk1.Name = "lblDisk1";
 			this.lblDisk1.Size = new System.Drawing.Size(48, 24);
 			this.lblDisk1.TabIndex = 16;
+			this.lblDisk1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblDisk1_MouseDown);
 			// 
 			// lblDisk2
 			// 
@@ -111,6 +115,8 @@
 			this.lblPeg2.Name = "lblPeg2";
 			this.lblPeg2.Size = new System.Drawing.Size(24, 144);
 			this.lblPeg2.TabIndex = 11;
+			this.lblPeg2.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPeg2_DragDrop);
+			this.lblPeg2.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblPeg2_DragEnter);
 			// 
 			// lblPeg3
 			// 
@@ -124,18 +130,53 @@
 			// 
 			// btnReset
 			// 
+			this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnReset.Location = new System.Drawing.Point(50, 34);
 			this.btnReset.Name = "btnReset";
-			this.btnReset.Size = new System.Drawing.Size(75, 23);
+			this.btnReset.Size = new System.Drawing.Size(128, 34);
 			this.btnReset.TabIndex = 18;
 			this.btnReset.Text = "Reset";
 			this.btnReset.UseVisualStyleBackColor = true;
+			this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+			// 
+			// lblMoves
+			// 
+			this.lblMoves.AutoSize = true;
+			this.lblMoves.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblMoves.Location = new System.Drawing.Point(240, 40);
+			this.lblMoves.Name = "lblMoves";
+			this.lblMoves.Size = new System.Drawing.Size(59, 20);
+			this.lblMoves.TabIndex = 19;
+			this.lblMoves.Text = "Moves:";
+			// 
+			// txtMoveCount
+			// 
+			this.txtMoveCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMoveCount.Location = new System.Drawing.Point(305, 38);
+			this.txtMoveCount.Name = "txtMoveCount";
+			this.txtMoveCount.Size = new System.Drawing.Size(35, 26);
+			this.txtMoveCount.TabIndex = 20;
+			this.txtMoveCount.Text = "0";
+			// 
+			// btnAnimate
+			// 
+			this.btnAnimate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnAnimate.Location = new System.Drawing.Point(50, 106);
+			this.btnAnimate.Name = "btnAnimate";
+			this.btnAnimate.Size = new System.Drawing.Size(128, 34);
+			this.btnAnimate.TabIndex = 21;
+			this.btnAnimate.Text = "Animate";
+			this.btnAnimate.UseVisualStyleBackColor = true;
+			this.btnAnimate.Click += new System.EventHandler(this.btnAnimate_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(808, 464);
+			this.Controls.Add(this.btnAnimate);
+			this.Controls.Add(this.txtMoveCount);
+			this.Controls.Add(this.lblMoves);
 			this.Controls.Add(this.btnReset);
 			this.Controls.Add(this.txtMoves);
 			this.Controls.Add(this.lblDisk1);
@@ -165,6 +206,9 @@
         private System.Windows.Forms.Label lblPeg2;
         private System.Windows.Forms.Label lblPeg3;
 		private System.Windows.Forms.Button btnReset;
+		private System.Windows.Forms.Label lblMoves;
+		private System.Windows.Forms.TextBox txtMoveCount;
+		private System.Windows.Forms.Button btnAnimate;
 	}
 }
 

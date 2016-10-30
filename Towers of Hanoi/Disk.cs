@@ -12,12 +12,13 @@ namespace Towers_of_Hanoi
         private int color;
         private int level; // Position in each peg
         private int pNum; // Number of peg 
-        private Label label;
+		public Label thisDisk;
+		//private Label label;
 
-        /// <summary>
-        /// default constructor
-        /// </summary>
-        public Disk()
+		/// <summary>
+		/// default constructor
+		/// </summary>
+		public Disk()
         {
             diameter = 0;
             color = 0;
@@ -40,14 +41,14 @@ namespace Towers_of_Hanoi
             color = col;
             level = lv;
             pNum = peg;
-            //Label label = aLabel;
-        }
+			thisDisk = aLabel;
+		}
 
-        /// <summary>
-        /// This method set new level in Disk object.
-        /// </summary>
-        /// <param name="lvl"></param>
-        public void setLevel(int lvl)
+		/// <summary>
+		/// This method set new level in Disk object.
+		/// </summary>
+		/// <param name="lvl"></param>
+		public void setLevel(int lvl)
         {
             level = lvl;
         }
@@ -125,7 +126,7 @@ namespace Towers_of_Hanoi
         /// <returns></returns>
         public Label getLabel()
         {
-            return label;
+            return thisDisk;
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Towers_of_Hanoi
         /// <param name="aLabel"></param>
         public void setLabel(Label aLabel)
         {
-            label = aLabel;
+            thisDisk = aLabel;
         }
     }
 }
