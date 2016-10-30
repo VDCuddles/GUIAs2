@@ -9,18 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//Some code referenced from HanoiTowers1 solution; most notably the rule enforcement logic.
+
 namespace Towers_of_Hanoi
 {
 	public partial class MainForm : Form
 	{
 		private Board board;
 		private int targetPole = 0;
-		private DiskMove diskmove;
+		private DiskMove diskMove;
 		private int moveCounter = 0;
 
 
 		public MainForm()
 		{
+			/// <summary>
+			/// Initialising MainForm, Board, and Diskmove classes
+			/// </summary>
 			InitializeComponent();
 
 			board = new Board(
@@ -32,63 +37,65 @@ namespace Towers_of_Hanoi
 
 				);
 
-			diskmove = new DiskMove();
+			diskMove = new DiskMove();
 		}
 
+		/// <summary>
+		/// Event handler on mousedown of a label. This handles rule enforcement, re-rendering, movement,
+		/// game logic, board reference, and win conditions through internal and external classes.
+		/// </summary>
 		private void lblDisk1_MouseDown(object sender, MouseEventArgs e)
 		{
 
 			Label alabel = (sender as Label);
 
+			//stores old data for use in rule enforcement
 			Disk oldDiskState = board.FindDisk(alabel);
 			board.savedOldDiskState = oldDiskState;
-
-			//int oldDiskPeg = board.FindDisk(alabel).getPegNum();
-
-			//MessageBox.Show("oldDisk.getDiameter() = " + (oldDiskState.getDiameter()) +
-			//	"\r\r" + "oldDisk.getPegNum() = " + (oldDiskState.getPegNum()) +
-			//	"\r\r" + "oldDisk.getLevel() = " + (oldDiskState.getLevel())
-			//	);
 
 			DragDropEffects result = alabel.DoDragDrop(alabel, DragDropEffects.All);
 			if (result != DragDropEffects.None)
 			{
-
+				//checks rule enforcement
 				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(oldDiskState))
 				{
-
+					//performs move if legal
 					board.move(board.FindDisk(alabel), targetPole);
-
+					//re-renders move if legal
 					board.Display();
 
+					//appends diskmove data for use in rendering txtMoves content (move record)
 					if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk1")
 					{
-						diskmove.diskInd = 0;
+						diskMove.diskInd = 0;
 					}
 
 					else if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk2")
 					{
-						diskmove.diskInd = 1;
+						diskMove.diskInd = 1;
 					}
 
 					else if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk3")
 					{
-						diskmove.diskInd = 2;
+						diskMove.diskInd = 2;
 					}
 
 					else if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk4")
 					{
-						diskmove.diskInd = 3;
+						diskMove.diskInd = 3;
 					}
 
-					diskmove.pegInd = targetPole;
+					diskMove.pegInd = targetPole;
 
-					txtMoves.AppendText(diskmove.AsText() + "\r\r");
+					txtMoves.AppendText(diskMove.AsText() + "\r\r");
+					board.movements.Add(diskMove.AsText());
+
 
 					moveCounter++;
 
 					txtMoveCount.Text = (moveCounter.ToString());
 
+					//perfect win condition
 					if (moveCounter == 15 &&
 
 						board.FindDisk(lblDisk1).getPegNum().ToString() == "2" &&
@@ -105,6 +112,7 @@ namespace Towers_of_Hanoi
 						MessageBox.Show("You have successfully completed the game with the minimum number of moves.");
 					}
 
+					//imperfect win condition
 					if (moveCounter > 15 &&
 
 						board.FindDisk(lblDisk1).getPegNum().ToString() == "2" &&
@@ -137,6 +145,9 @@ namespace Towers_of_Hanoi
 
 		private void lblPeg2_DragDrop(object sender, DragEventArgs e)
 		{
+			/// <summary>
+			/// provides target pole information for use in the MouseDown method.
+			/// </summary>
 			Label alabel = (sender as Label);
 			if (alabel == lblPeg1) targetPole = 0;
 			else if (alabel == lblPeg2) targetPole = 1;
@@ -146,6 +157,9 @@ namespace Towers_of_Hanoi
 
 		private void btnReset_Click(object sender, EventArgs e)
 		{
+			/// <summary>
+			/// resets game, resets positioning, stops animation if applicable, resets move records.
+			/// </summary>
 			board.reset();
 			tmrAnimationTimer.Stop();
 			txtMoves.Text = null;
@@ -155,6 +169,9 @@ namespace Towers_of_Hanoi
 
 		private void btnAnimate_Click(object sender, EventArgs e)
 		{
+			/// <summary>
+			/// resets game, resets positioning, resets move records, starts animation.
+			/// </summary>
 			board.reset();
 			tmrAnimationTimer.Enabled = true;
 			tmrAnimationTimer.Start();
@@ -162,6 +179,10 @@ namespace Towers_of_Hanoi
 
 		private void tmrAnimationTimer_Tick(object sender, EventArgs e)
 		{
+			/// <summary>
+			/// applies a scripted move for each second that goes by, using the tick to update the current move.
+			/// Tick also updates move record data, board data, and re-renders board.
+			/// </summary>
 			txtMoveCount.Text = moveCounter.ToString();
 
 			switch (moveCounter)

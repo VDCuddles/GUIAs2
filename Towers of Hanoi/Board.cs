@@ -17,7 +17,7 @@ namespace Towers_of_Hanoi
 		private const int diskHeight = 24;
 
 		Disk[,] board; //condition says TWO dimentional array            
-		ArrayList movements;
+		public ArrayList movements;
 		Disk[] disks; //Array of disks
 		Disk diskToReturn;
 
@@ -29,6 +29,7 @@ namespace Towers_of_Hanoi
 
 		public Board()
 		{
+			//default constructor
 			updateLevel = 3;
 			newDisk = null;
 			oldPos = 0;
@@ -82,6 +83,7 @@ namespace Towers_of_Hanoi
 
 		public void reset()
 		{
+			//resets board data and disk positioning.
 			for (int iP = 0; iP < NUM_PEGS; iP++)
 			{
 				//Remove all elements from board array
@@ -120,7 +122,9 @@ namespace Towers_of_Hanoi
 
 		public bool canStartMove(Disk aDisk)
 		{
-
+			/// <summary>
+			/// ensures only the top disk can be moved.
+			/// </summary>
 
 			if ((aDisk.getLevel() < 3) && (board[aDisk.getPegNum(), (aDisk.getLevel() + 1)] != null))
 			{
@@ -137,7 +141,9 @@ namespace Towers_of_Hanoi
 
 		public bool canDrop(Disk aDisk, int aPeg)
 		{
-
+			/// <summary>
+			/// handles other rules for enforcement and returns bool for if move is valid or not.
+			/// </summary>
 			if (board[aPeg, 3] != null)
 			{
 				MessageBox.Show("Invalid Move - Pole is full.");
@@ -184,7 +190,9 @@ namespace Towers_of_Hanoi
 
 		public void move(Disk aDisk, int newLevel)
 		{
-
+			/// <summary>
+			/// performs a move in the virtual board reference, but not the rendered labels.
+			/// </summary>
 			board[aDisk.getPegNum(), aDisk.getLevel()] = null;
 
 			newDisk = aDisk;
@@ -210,54 +218,38 @@ namespace Towers_of_Hanoi
 
 		public string allMovesAsString()
 		{
-			return "dummy";  // Dummy return to avoid syntax error - must be changed
+			/// <summary>
+			/// returns a list of moves as a string.
+			/// </summary>
+
+			string toPrint = "";
+			for (int i = 0; i < movements.Capacity; i++)
+			{
+				toPrint += (movements[i] + "\r\r");
+
+			}
+
+			return toPrint;  // Dummy return to avoid syntax error - must be changed
 		}
 
 
 		public void Display()
 		{
-			//MessageBox.Show("oldDisk.getDiameter() = " + (oldDisk.getDiameter()) +
-			//	"\r\r" + "oldDisk.getPegNum() = " + (oldDisk.getPegNum()) +
-			//	"\r\r" + "oldDisk.getLevel() = " + (oldDisk.getLevel())
-			//	);
-
-
+			/// <summary>
+			/// re-renders the current disk being moved to its new position.
+			/// </summary>
 			newDisk.getLabel().Hide();
 			newDisk.getLabel().Left = poleStart + ((newDisk.getPegNum()) * poleGap) - (newDisk.getDiameter() / 2);
 			newDisk.getLabel().Top = deckHeight - (newDisk.getLevel() * diskHeight);
 			newDisk.getLabel().Show();
 
-
-
-			//MessageBox.Show("newDisk.getPegNum() = " + (newDisk.getPegNum()) +
-			//	"\r\r" + "newDisk.getLevel() = " + (newDisk.getLevel())
-			//	);
-
-
-			//for (int ipole = 0; ipole < 3; ipole++)
-			//{
-			//	for (int jlevel = 0; jlevel < 4; jlevel++)
-			//	{
-			//		if (board[ipole, jlevel] == null)
-			//		{
-
-			//			MessageBox.Show("no data at  board[" + (ipole) + "," + (jlevel) + "]");
-
-			//		}
-
-			//		else {
-			//			MessageBox.Show("level data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLevel().ToString() +
-			//				"\r\rlabel data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLabel().Name.ToString() +
-			//				"\r\rpeg data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getPegNum().ToString() +
-			//				"\r\rdiameter data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getDiameter().ToString()
-			//				);
-			//		}
-			//	}
-			//}
 		}
 
 
 		public Disk FindDisk(Label aLabel)
+		/// <summary>
+		/// locates the selected disk in the board 2D array using the aLabel param as a reference.
+		/// </summary>
 		{
 
 			for (int ipole = 0; ipole < 3; ipole++)
@@ -277,6 +269,7 @@ namespace Towers_of_Hanoi
 			return diskToReturn;  // Dummy return to avoid syntax error - must be changed
 		}
 
+		//below are unused methods given in starter project
 
 		public int newLevInPeg(int pegNum)
 		{
