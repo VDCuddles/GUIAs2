@@ -7,8 +7,8 @@ namespace Towers_of_Hanoi
 {
     class DiskMove
     {
-        private int diskInd;
-        private int pegInd;
+        public int diskInd;
+		public int pegInd;
 
 		/// <summary>
 		/// Default constructor

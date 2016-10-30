@@ -15,6 +15,7 @@ namespace Towers_of_Hanoi
     {
 		private Board board;
 		private int targetPole = 0;
+		private DiskMove diskmove;
 		
 		public MainForm()
         {
@@ -28,6 +29,7 @@ namespace Towers_of_Hanoi
 						new Disk(lblDisk4, 0, 0, 0)
 
 				);
+			diskmove = new DiskMove();
 		}
 
 		private void lblDisk1_MouseDown(object sender, MouseEventArgs e)
@@ -38,13 +40,36 @@ namespace Towers_of_Hanoi
 			DragDropEffects result = alabel.DoDragDrop(alabel, DragDropEffects.All);
 			if (result != DragDropEffects.None){
 
-				//MessageBox.Show(targetPole.ToString());
-
 				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel))) { 
 
 					board.move(board.FindDisk(alabel), targetPole);
 
 					board.Display();
+
+					if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk1")
+					{
+						diskmove.diskInd = 0;
+					}
+
+					else if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk2")
+					{
+						diskmove.diskInd = 1;
+					}
+
+					else if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk3")
+					{
+						diskmove.diskInd = 2;
+					}
+
+					else if (board.FindDisk(alabel).getLabel().Name.ToString() == "lblDisk4")
+					{
+						diskmove.diskInd = 3;
+					}
+
+					diskmove.pegInd = targetPole;
+
+
+					txtMoves.AppendText(diskmove.AsText() + "\r\r");
 
 				}
 
@@ -81,6 +106,7 @@ namespace Towers_of_Hanoi
 		private void btnReset_Click(object sender, EventArgs e)
 		{
 			board.reset();
+			txtMoves.Text = null;
 		}
 
 		private void btnAnimate_Click(object sender, EventArgs e)

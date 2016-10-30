@@ -146,7 +146,7 @@ namespace Towers_of_Hanoi
 
 			oldDisk = aDisk;
 			oldPos = aDisk.getPegNum();
-			board[oldDisk.getPegNum(), oldDisk.getLevel()] = null;
+			board[aDisk.getPegNum(), aDisk.getLevel()] = null;
 
 			newDisk = aDisk;
 			newPos = aDisk.getPegNum();
@@ -186,10 +186,10 @@ namespace Towers_of_Hanoi
 			//	);
 
 
-			oldDisk.getLabel().Hide();
-			oldDisk.getLabel().Left = poleStart + ((newDisk.getPegNum()) * poleGap) - (oldDisk.getDiameter() / 2);
-			oldDisk.getLabel().Top = deckHeight - (newDisk.getLevel() * diskHeight);
-			oldDisk.getLabel().Show();
+			newDisk.getLabel().Hide();
+			newDisk.getLabel().Left = poleStart + ((newDisk.getPegNum()) * poleGap) - (newDisk.getDiameter() / 2);
+			newDisk.getLabel().Top = deckHeight - (newDisk.getLevel() * diskHeight);
+			newDisk.getLabel().Show();
 
 
 
