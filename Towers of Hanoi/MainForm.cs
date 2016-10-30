@@ -11,8 +11,8 @@ using System.Windows.Forms;
 
 namespace Towers_of_Hanoi
 {
-    public partial class MainForm : Form
-    {
+	public partial class MainForm : Form
+	{
 		private Board board;
 		private int targetPole = 0;
 		private DiskMove diskmove;
@@ -20,8 +20,8 @@ namespace Towers_of_Hanoi
 
 
 		public MainForm()
-        {
-            InitializeComponent();
+		{
+			InitializeComponent();
 
 			board = new Board(
 
@@ -40,9 +40,11 @@ namespace Towers_of_Hanoi
 			Label alabel = (sender as Label);
 
 			DragDropEffects result = alabel.DoDragDrop(alabel, DragDropEffects.All);
-			if (result != DragDropEffects.None){
+			if (result != DragDropEffects.None)
+			{
 
-				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel))) { 
+				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel)))
+				{
 
 					board.move(board.FindDisk(alabel), targetPole);
 
@@ -70,8 +72,12 @@ namespace Towers_of_Hanoi
 
 					diskmove.pegInd = targetPole;
 
-
 					txtMoves.AppendText(diskmove.AsText() + "\r\r");
+
+					moveCounter++;
+
+					txtMoveCount.Text = (moveCounter.ToString());
+
 
 				}
 
@@ -133,72 +139,72 @@ namespace Towers_of_Hanoi
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (2)\r\r");
 					break;
-				case 2:;
+				case 2:
 					board.move(board.FindDisk(lblDisk2), 2);
 					board.Display();
 					txtMoves.AppendText("Disk (2) moved to Peg (3)\r\r");
 					break;
-				case 3:;
+				case 3:
 					board.move(board.FindDisk(lblDisk1), 2);
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (3)\r\r");
 					break;
-				case 4:;
+				case 4:
 					board.move(board.FindDisk(lblDisk3), 1);
 					board.Display();
 					txtMoves.AppendText("Disk (3) moved to Peg (2)\r\r");
 					break;
-				case 5:;
+				case 5:
 					board.move(board.FindDisk(lblDisk1), 0);
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (1)\r\r");
 					break;
-				case 6:;
+				case 6:
 					board.move(board.FindDisk(lblDisk2), 1);
 					board.Display();
 					txtMoves.AppendText("Disk (2) moved to Peg (2)\r\r");
 					break;
-				case 7:;
+				case 7:
 					board.move(board.FindDisk(lblDisk1), 1);
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (2)\r\r");
 					break;
-				case 8:;
+				case 8:
 					board.move(board.FindDisk(lblDisk4), 2);
 					board.Display();
 					txtMoves.AppendText("Disk (4) moved to Peg (3)\r\r");
 					break;
-				case 9:;
+				case 9:
 					board.move(board.FindDisk(lblDisk1), 2);
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (3)\r\r");
 					break;
-				case 10:;
+				case 10:
 					board.move(board.FindDisk(lblDisk2), 0);
 					board.Display();
 					txtMoves.AppendText("Disk (2) moved to Peg (1)\r\r");
 					break;
-				case 11:;
+				case 11:
 					board.move(board.FindDisk(lblDisk1), 0);
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (1)\r\r");
 					break;
-				case 12:;
+				case 12:
 					board.move(board.FindDisk(lblDisk3), 2);
 					board.Display();
 					txtMoves.AppendText("Disk (3) moved to Peg (3)\r\r");
 					break;
-				case 13:;
+				case 13:
 					board.move(board.FindDisk(lblDisk1), 1);
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (2)\r\r");
 					break;
-				case 14:;
+				case 14:
 					board.move(board.FindDisk(lblDisk2), 2);
 					board.Display();
 					txtMoves.AppendText("Disk (2) moved to Peg (3)\r\r");
 					break;
-				case 15:;
+				case 15:
 					board.move(board.FindDisk(lblDisk1), 2);
 					board.Display();
 					txtMoves.AppendText("Disk (1) moved to Peg (3)\r\r");
