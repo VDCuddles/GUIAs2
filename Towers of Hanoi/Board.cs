@@ -84,28 +84,40 @@ namespace Towers_of_Hanoi
 
         public void reset()
         {
-            for (int iP = 0; iP < NUM_PEGS; iP++)
-            {
-                //Remove all elements from board array
-                for (int iD = 0; iD < NUM_DISKS; iD++)
-                {
-                    board[iP, iD] = null;
+			for (int iP = 0; iP < NUM_PEGS; iP++)
+			{
+				//Remove all elements from board array
+				for (int iD = 0; iD < NUM_DISKS; iD++)
+				{
+					board[iP, iD] = null;
 
-                    //Update disks array
-                    disks[iD].setPegNum(0);
-                    disks[iD].setLevel(NUM_DISKS - 1 - iD);
-                }
-            }
+					//Update disks array
+					disks[iD].setPegNum(0);
+					disks[iD].setLevel(NUM_DISKS - 1 - iD);
 
-            //Reallocate elements 
-            board[0, 3] = disks[0]; //Peg 1/Level4 
-            board[0, 2] = disks[1]; //Peg 1/Level3 
-            board[0, 1] = disks[2]; //Peg 1/Level2
-            board[0, 0] = disks[3]; //Peg 1/Level1 
+				}
+			}
 
-            //Remove all elements from movement arraylist
-            movements.Clear();
-        }
+			//Reallocate elements 
+			board[0, 3] = disks[0]; //Peg 1/Level4 
+			board[0, 2] = disks[1]; //Peg 1/Level3 
+			board[0, 1] = disks[2]; //Peg 1/Level2
+			board[0, 0] = disks[3]; //Peg 1/Level1 
+
+			//Reallocate display positioning
+
+			board[0, 3].thisDisk.Left = 98;
+			board[0, 3].thisDisk.Top = 219;
+			board[0, 2].thisDisk.Left = 82;
+			board[0, 2].thisDisk.Top = 243;
+			board[0, 1].thisDisk.Left = 66;
+			board[0, 1].thisDisk.Top = 267;
+			board[0, 0].thisDisk.Left = 50;
+			board[0, 0].thisDisk.Top = 291;
+
+			//Remove all elements from movement arraylist
+			movements.Clear();
+		}
 
 
         public bool canStartMove(Disk aDisk)

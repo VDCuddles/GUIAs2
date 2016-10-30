@@ -14,33 +14,46 @@ namespace Towers_of_Hanoi
     public partial class MainForm : Form
     {
 		private Board board;
-		private List<Disk> disks = new List<Disk>();
-		private Disk disk1;
-		private Disk disk2;
-		private Disk disk3;
-		private Disk disk4;
-		private DiskMove diskmove;
+		//private List<Disk> disks = new List<Disk>();
+		//private DiskMove diskmove;
 		private int targetPole = 0;
-		private List<DiskMove> moves = new List<DiskMove>();
+		//private List<DiskMove> moves = new List<DiskMove>();
 		
 		public MainForm()
         {
             InitializeComponent();
-			ResetBoard();
-        }
+			//ResetBoard();
 
-		private void ResetBoard()
-		{
-			disks = new List<Disk>
-			{
-				new Disk(lblDisk1, 0, 3, 0),
-				new Disk(lblDisk2, 0, 2, 0),
-				new Disk(lblDisk3, 0, 1, 0),
-				new Disk(lblDisk4, 0, 0, 0),
-			};
-			board = new Board(disks[0], disks[1], disks[2], disks[3]);
-			moves.Clear();
+			//disks = new List<Disk>
+			//	{
+			//		new Disk(lblDisk1, 0, 3, 0),
+			//		new Disk(lblDisk2, 0, 2, 0),
+			//		new Disk(lblDisk3, 0, 1, 0),
+			//		new Disk(lblDisk4, 0, 0, 0),
+			//	};
+
+			board = new Board(
+
+						new Disk(lblDisk1, 0, 3, 0),
+						new Disk(lblDisk2, 0, 2, 0),
+						new Disk(lblDisk3, 0, 1, 0),
+						new Disk(lblDisk4, 0, 0, 0)
+
+				);
 		}
+
+		//private void ResetBoard()
+		//{
+		//	disks = new List<Disk>
+		//	{
+		//		new Disk(lblDisk1, 0, 3, 0),
+		//		new Disk(lblDisk2, 0, 2, 0),
+		//		new Disk(lblDisk3, 0, 1, 0),
+		//		new Disk(lblDisk4, 0, 0, 0),
+		//	};
+		//	board = new Board(disks[0], disks[1], disks[2], disks[3]);
+		//	moves.Clear();
+		//}
 
 		private void lblDisk1_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -97,9 +110,9 @@ namespace Towers_of_Hanoi
 
 		private void btnReset_Click(object sender, EventArgs e)
 		{
-						board.reset();
+			board.reset();
 
-			ResetBoard();
+			//ResetBoard();
 		}
 
 		private void btnAnimate_Click(object sender, EventArgs e)
