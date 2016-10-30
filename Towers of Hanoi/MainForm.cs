@@ -51,6 +51,8 @@ namespace Towers_of_Hanoi
 			DragDropEffects result = alabel.DoDragDrop(alabel, DragDropEffects.All);
 			if (result != DragDropEffects.None){
 
+				MessageBox.Show(targetPole.ToString());
+
 				if (board.canDrop(board.FindDisk(alabel), targetPole)) { 
 
 					board.move(board.FindDisk(alabel), targetPole);
@@ -72,9 +74,9 @@ namespace Towers_of_Hanoi
 		private void lblPeg2_DragDrop(object sender, DragEventArgs e)
 		{
 			Label alabel = (sender as Label);
-			if (alabel == lblPeg1) targetPole = 1;
-			else if (alabel == lblPeg2) targetPole = 2;
-			else if (alabel == lblPeg3) targetPole = 3;
+			if (alabel == lblPeg1) targetPole = 0;
+			else if (alabel == lblPeg2) targetPole = 1;
+			else if (alabel == lblPeg3) targetPole = 2;
 
 			// put the dik on the peg
 

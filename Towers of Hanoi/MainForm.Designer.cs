@@ -69,6 +69,7 @@
 			this.lblDisk2.Name = "lblDisk2";
 			this.lblDisk2.Size = new System.Drawing.Size(80, 24);
 			this.lblDisk2.TabIndex = 15;
+			this.lblDisk2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblDisk1_MouseDown);
 			// 
 			// lblDisk3
 			// 
@@ -78,6 +79,7 @@
 			this.lblDisk3.Name = "lblDisk3";
 			this.lblDisk3.Size = new System.Drawing.Size(112, 24);
 			this.lblDisk3.TabIndex = 14;
+			this.lblDisk3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblDisk1_MouseDown);
 			// 
 			// lblDisk4
 			// 
@@ -87,6 +89,7 @@
 			this.lblDisk4.Name = "lblDisk4";
 			this.lblDisk4.Size = new System.Drawing.Size(144, 24);
 			this.lblDisk4.TabIndex = 13;
+			this.lblDisk4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblDisk1_MouseDown);
 			// 
 			// pnlBase
 			// 
@@ -105,6 +108,8 @@
 			this.lblPeg1.Name = "lblPeg1";
 			this.lblPeg1.Size = new System.Drawing.Size(24, 144);
 			this.lblPeg1.TabIndex = 10;
+			this.lblPeg1.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPeg2_DragDrop);
+			this.lblPeg1.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblPeg2_DragEnter);
 			// 
 			// lblPeg2
 			// 
@@ -127,6 +132,8 @@
 			this.lblPeg3.Name = "lblPeg3";
 			this.lblPeg3.Size = new System.Drawing.Size(24, 144);
 			this.lblPeg3.TabIndex = 12;
+			this.lblPeg3.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPeg2_DragDrop);
+			this.lblPeg3.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblPeg2_DragEnter);
 			// 
 			// btnReset
 			// 

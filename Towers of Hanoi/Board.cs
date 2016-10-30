@@ -18,7 +18,7 @@ namespace Towers_of_Hanoi
 		Disk newDisk = null;
 		int oldPos = 0;
 		int newPos = 0;
-		const int poleStart = 128;
+		const int poleStart = 126;
 		const int poleGap = 180;
 		const int deckHeight = 291;
 		const int diskHeight = 24;
@@ -153,7 +153,7 @@ namespace Towers_of_Hanoi
 
 
 			oldDisk.getLabel().Hide();
-			oldDisk.getLabel().Left = poleStart + ((newDisk.getPegNum() - 1) * poleGap) - (oldDisk.getDiameter() / 2);
+			oldDisk.getLabel().Left = poleStart + ((newDisk.getPegNum()) * poleGap) - (oldDisk.getDiameter() / 2);
 			oldDisk.getLabel().Top = deckHeight - (newDisk.getLevel() * diskHeight);
 			oldDisk.getLabel().Show();
 			board[oldDisk.getPegNum(), oldDisk.getLevel()] = null;
