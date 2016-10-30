@@ -53,12 +53,17 @@ namespace Towers_of_Hanoi
 
 				MessageBox.Show(targetPole.ToString());
 
-				if (board.canDrop(board.FindDisk(alabel), targetPole)) { 
+				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel))) { 
 
 					board.move(board.FindDisk(alabel), targetPole);
 
 					board.Display();
 				
+				}
+
+				else
+				{
+					MessageBox.Show("Invalid move.");
 				}
 			}
 

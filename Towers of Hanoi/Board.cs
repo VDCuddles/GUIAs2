@@ -108,6 +108,7 @@ namespace Towers_of_Hanoi
 
         public bool canDrop(Disk aDisk, int aPeg)
         {
+			
 
            return true;
         }
@@ -129,11 +130,14 @@ namespace Towers_of_Hanoi
 				{
 					updateLevel = i;
 					newDisk.setLevel(updateLevel);
+					//MessageBox.Show("Nothing stored at level " + (i));
 					break;
 				}
+
 			}
 
 			board[newLevel, updateLevel] = aDisk;
+			board[oldDisk.getPegNum(), oldDisk.getLevel()] = null;
 
 		}
 
@@ -156,7 +160,6 @@ namespace Towers_of_Hanoi
 			oldDisk.getLabel().Left = poleStart + ((newDisk.getPegNum()) * poleGap) - (oldDisk.getDiameter() / 2);
 			oldDisk.getLabel().Top = deckHeight - (newDisk.getLevel() * diskHeight);
 			oldDisk.getLabel().Show();
-			board[oldDisk.getPegNum(), oldDisk.getLevel()] = null;
 
 
 
