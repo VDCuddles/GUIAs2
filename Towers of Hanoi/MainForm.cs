@@ -41,6 +41,7 @@ namespace Towers_of_Hanoi
 			Label alabel = (sender as Label);
 
 			Disk oldDiskState = board.FindDisk(alabel);
+			board.savedOldDiskState = oldDiskState;
 
 			//int oldDiskPeg = board.FindDisk(alabel).getPegNum();
 
@@ -53,7 +54,7 @@ namespace Towers_of_Hanoi
 			if (result != DragDropEffects.None)
 			{
 
-				if (board.canDrop(oldDiskState, targetPole) && board.canStartMove(oldDiskState))
+				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(oldDiskState))
 				{
 
 					board.move(board.FindDisk(alabel), targetPole);
@@ -91,24 +92,18 @@ namespace Towers_of_Hanoi
 
 				}
 
-				else
-				{
-					MessageBox.Show("Invalid move.");
-				}
+				//else
+				//{
+				//	MessageBox.Show("Invalid move.");
+				//}
 			}
 
 		}
 
 		private void lblPeg2_DragEnter(object sender, DragEventArgs e)
 		{
-			Label alabel = (sender as Label);
 
-			if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel)))
-			{
-
-				e.Effect = DragDropEffects.All;
-
-			}
+			e.Effect = DragDropEffects.All;
 
 		}
 

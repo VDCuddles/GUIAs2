@@ -25,6 +25,7 @@ namespace Towers_of_Hanoi
 		public Disk newDisk;
 		public int oldPos;
 		public int newPos;
+		public Disk savedOldDiskState;
 
 		public Board()
 		{
@@ -137,14 +138,72 @@ namespace Towers_of_Hanoi
 		public bool canDrop(Disk aDisk, int aPeg)
 		{
 
-			//if ((newLevel > 0) && (disks[oldPole, oldLevel].thisDisk.Width > disks[newPole, newLevel - 1].thisDisk.Width))
+			if (board[aPeg, 3] != null)
+			{
+				MessageBox.Show("Invalid Move - pole is full");
+				return false;
+			}
+			else if (board[savedOldDiskState.getPegNum(), savedOldDiskState.getLevel()] == null)
+			{
+				MessageBox.Show("Invalid Move - no disk at start point");
+				return false;
+			}
+
+			if (savedOldDiskState.getLevel() < 3)
+			{
+				if (board[savedOldDiskState.getPegNum(), savedOldDiskState.getLevel() + 1] != null)
+				{
+					MessageBox.Show("Invalid Move - can only move top disk");
+					return false;
+				}
+			}
+
+			int newLevel = aDisk.getLevel();
+			for (int i = 0; i < 4; i++)
+			{
+				if (board[aPeg, i] == null)
+				{
+					newLevel = i;
+					break;
+				}
+			}
+
+			if (newLevel > 0)
+			{
+				if (board[savedOldDiskState.getPegNum(), savedOldDiskState.getLevel()].thisDisk.Width > board[aPeg, newLevel - 1].thisDisk.Width)
+				{
+					MessageBox.Show("Invalid Move - cannot drop bigger disk on smaller");
+					return false;
+				}
+			}
+
+			return true;
+
+
+			//Disk highestOnPeg = null;
+
+			//for (int i = 4; i < 0; i--)
 			//{
-			//	//MessageBox.Show("Invalid Move - cannot drop bigger disk on smaller");
-			//	return false;
+
+			//	MessageBox.Show(i.ToString());
+
+			//	if (board[aPeg, i] != null)
+			//	{
+			//		highestOnPeg = board[aPeg, i];
+			//		break;
+			//	}
+
 			//}
+			////MessageBox.Show("highestOnPeg = " + highestOnPeg.getDiameter() + "\r\rboard[aPeg, i] =" + aDisk.getDiameter());
+
+
+			////if (aDisk.getDiameter() > highestOnPeg.getDiameter())
+			////{
+			////	return false;
+			////}
 
 			//else {
-			return true;
+			//	return true;
 			//}
 		}
 
