@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.txtMoves = new System.Windows.Forms.TextBox();
 			this.lblDisk1 = new System.Windows.Forms.Label();
 			this.lblDisk2 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@
 			this.lblMoves = new System.Windows.Forms.Label();
 			this.txtMoveCount = new System.Windows.Forms.TextBox();
 			this.btnAnimate = new System.Windows.Forms.Button();
+			this.tmrAnimationTimer = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
 			// 
 			// txtMoves
@@ -176,6 +178,11 @@
 			this.btnAnimate.UseVisualStyleBackColor = true;
 			this.btnAnimate.Click += new System.EventHandler(this.btnAnimate_Click);
 			// 
+			// tmrAnimationTimer
+			// 
+			this.tmrAnimationTimer.Interval = 1000;
+			this.tmrAnimationTimer.Tick += new System.EventHandler(this.tmrAnimationTimer_Tick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +223,7 @@
 		private System.Windows.Forms.Label lblMoves;
 		private System.Windows.Forms.TextBox txtMoveCount;
 		private System.Windows.Forms.Button btnAnimate;
+		private System.Windows.Forms.Timer tmrAnimationTimer;
 	}
 }
 

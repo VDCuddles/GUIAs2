@@ -16,7 +16,9 @@ namespace Towers_of_Hanoi
 		private Board board;
 		private int targetPole = 0;
 		private DiskMove diskmove;
-		
+		private int moveCounter = 0;
+
+
 		public MainForm()
         {
             InitializeComponent();
@@ -106,11 +108,105 @@ namespace Towers_of_Hanoi
 		private void btnReset_Click(object sender, EventArgs e)
 		{
 			board.reset();
+			tmrAnimationTimer.Stop();
 			txtMoves.Text = null;
+			txtMoveCount.Text = "0";
+			moveCounter = 0;
 		}
 
 		private void btnAnimate_Click(object sender, EventArgs e)
 		{
+			board.reset();
+			tmrAnimationTimer.Enabled = true;
+			tmrAnimationTimer.Start();
+		}
+
+		private void tmrAnimationTimer_Tick(object sender, EventArgs e)
+		{
+			txtMoveCount.Text = moveCounter.ToString();
+
+			switch (moveCounter)
+			{
+
+				case 1:
+					board.move(board.FindDisk(lblDisk1), 1);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (2)\r\r");
+					break;
+				case 2:;
+					board.move(board.FindDisk(lblDisk2), 2);
+					board.Display();
+					txtMoves.AppendText("Disk (2) moved to Peg (3)\r\r");
+					break;
+				case 3:;
+					board.move(board.FindDisk(lblDisk1), 2);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (3)\r\r");
+					break;
+				case 4:;
+					board.move(board.FindDisk(lblDisk3), 1);
+					board.Display();
+					txtMoves.AppendText("Disk (3) moved to Peg (2)\r\r");
+					break;
+				case 5:;
+					board.move(board.FindDisk(lblDisk1), 0);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (1)\r\r");
+					break;
+				case 6:;
+					board.move(board.FindDisk(lblDisk2), 1);
+					board.Display();
+					txtMoves.AppendText("Disk (2) moved to Peg (2)\r\r");
+					break;
+				case 7:;
+					board.move(board.FindDisk(lblDisk1), 1);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (2)\r\r");
+					break;
+				case 8:;
+					board.move(board.FindDisk(lblDisk4), 2);
+					board.Display();
+					txtMoves.AppendText("Disk (4) moved to Peg (3)\r\r");
+					break;
+				case 9:;
+					board.move(board.FindDisk(lblDisk1), 2);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (3)\r\r");
+					break;
+				case 10:;
+					board.move(board.FindDisk(lblDisk2), 0);
+					board.Display();
+					txtMoves.AppendText("Disk (2) moved to Peg (1)\r\r");
+					break;
+				case 11:;
+					board.move(board.FindDisk(lblDisk1), 0);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (1)\r\r");
+					break;
+				case 12:;
+					board.move(board.FindDisk(lblDisk3), 2);
+					board.Display();
+					txtMoves.AppendText("Disk (3) moved to Peg (3)\r\r");
+					break;
+				case 13:;
+					board.move(board.FindDisk(lblDisk1), 1);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (2)\r\r");
+					break;
+				case 14:;
+					board.move(board.FindDisk(lblDisk2), 2);
+					board.Display();
+					txtMoves.AppendText("Disk (2) moved to Peg (3)\r\r");
+					break;
+				case 15:;
+					board.move(board.FindDisk(lblDisk1), 2);
+					board.Display();
+					txtMoves.AppendText("Disk (1) moved to Peg (3)\r\r");
+					tmrAnimationTimer.Stop();
+					break;
+
+			}
+			moveCounter++;
 
 		}
 	}
