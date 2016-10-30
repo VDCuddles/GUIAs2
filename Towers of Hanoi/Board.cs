@@ -140,12 +140,12 @@ namespace Towers_of_Hanoi
 
 			if (board[aPeg, 3] != null)
 			{
-				MessageBox.Show("Invalid Move - pole is full");
+				MessageBox.Show("Invalid Move - Pole is full.");
 				return false;
 			}
 			else if (board[savedOldDiskState.getPegNum(), savedOldDiskState.getLevel()] == null)
 			{
-				MessageBox.Show("Invalid Move - no disk at start point");
+				MessageBox.Show("Invalid Move - No disk at start point.");
 				return false;
 			}
 
@@ -153,7 +153,7 @@ namespace Towers_of_Hanoi
 			{
 				if (board[savedOldDiskState.getPegNum(), savedOldDiskState.getLevel() + 1] != null)
 				{
-					MessageBox.Show("Invalid Move - can only move top disk");
+					MessageBox.Show("Invalid Move - Can only move top disk.");
 					return false;
 				}
 			}
@@ -172,47 +172,19 @@ namespace Towers_of_Hanoi
 			{
 				if (board[savedOldDiskState.getPegNum(), savedOldDiskState.getLevel()].thisDisk.Width > board[aPeg, newLevel - 1].thisDisk.Width)
 				{
-					MessageBox.Show("Invalid Move - cannot drop bigger disk on smaller");
+					MessageBox.Show("Invalid Move - Cannot drop bigger disk on smaller.");
 					return false;
 				}
 			}
 
 			return true;
 
-
-			//Disk highestOnPeg = null;
-
-			//for (int i = 4; i < 0; i--)
-			//{
-
-			//	MessageBox.Show(i.ToString());
-
-			//	if (board[aPeg, i] != null)
-			//	{
-			//		highestOnPeg = board[aPeg, i];
-			//		break;
-			//	}
-
-			//}
-			////MessageBox.Show("highestOnPeg = " + highestOnPeg.getDiameter() + "\r\rboard[aPeg, i] =" + aDisk.getDiameter());
-
-
-			////if (aDisk.getDiameter() > highestOnPeg.getDiameter())
-			////{
-			////	return false;
-			////}
-
-			//else {
-			//	return true;
-			//}
 		}
 
 
 		public void move(Disk aDisk, int newLevel)
 		{
 
-			//oldDisk = board[aDisk.getPegNum(), aDisk.getLevel()];
-			//oldPos = board[aDisk.getPegNum(), aDisk.getLevel()].getPegNum() ;
 			board[aDisk.getPegNum(), aDisk.getLevel()] = null;
 
 			newDisk = aDisk;
@@ -233,9 +205,6 @@ namespace Towers_of_Hanoi
 
 
 			board[newLevel, updateLevel] = aDisk;
-
-			//MessageBox.Show("aDisk data:\r\r level:" + (aDisk.getLevel()) + "\r\rpeg:" + (aDisk.getPegNum()));
-
 		}
 
 

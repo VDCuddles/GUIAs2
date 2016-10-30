@@ -89,13 +89,41 @@ namespace Towers_of_Hanoi
 
 					txtMoveCount.Text = (moveCounter.ToString());
 
+					if (moveCounter == 15 &&
+
+						board.FindDisk(lblDisk1).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk1).getLevel().ToString() == "3" &&
+						board.FindDisk(lblDisk2).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk2).getLevel().ToString() == "2" &&
+						board.FindDisk(lblDisk3).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk3).getLevel().ToString() == "1" &&
+						board.FindDisk(lblDisk4).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk4).getLevel().ToString() == "0"
+
+						)
+					{
+						MessageBox.Show("You have successfully completed the game with the minimum number of moves.");
+					}
+
+					if (moveCounter > 15 &&
+
+						board.FindDisk(lblDisk1).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk1).getLevel().ToString() == "3" &&
+						board.FindDisk(lblDisk2).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk2).getLevel().ToString() == "2" &&
+						board.FindDisk(lblDisk3).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk3).getLevel().ToString() == "1" &&
+						board.FindDisk(lblDisk4).getPegNum().ToString() == "2" &&
+						board.FindDisk(lblDisk4).getLevel().ToString() == "0"
+
+	)
+					{
+						MessageBox.Show("You have successfully completed the game but not with the minimum number of moves.");
+					}
+
 
 				}
 
-				//else
-				//{
-				//	MessageBox.Show("Invalid move.");
-				//}
 			}
 
 		}
