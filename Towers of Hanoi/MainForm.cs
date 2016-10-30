@@ -58,6 +58,8 @@ namespace Towers_of_Hanoi
 					board.move(board.FindDisk(alabel), targetPole);
 
 					board.Display();
+
+
 				
 				}
 
@@ -72,8 +74,16 @@ namespace Towers_of_Hanoi
 
 		private void lblPeg2_DragEnter(object sender, DragEventArgs e)
 		{
-			e.Effect = DragDropEffects.All;
-			//var DINGUS = "WHATEBERr";
+			Label alabel = (sender as Label);
+
+			if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel)))
+			{
+
+				e.Effect = DragDropEffects.All;
+				//var DINGUS = "WHATEBERr";
+
+			}
+
 		}
 
 		private void lblPeg2_DragDrop(object sender, DragEventArgs e)
@@ -82,8 +92,6 @@ namespace Towers_of_Hanoi
 			if (alabel == lblPeg1) targetPole = 0;
 			else if (alabel == lblPeg2) targetPole = 1;
 			else if (alabel == lblPeg3) targetPole = 2;
-
-			// put the dik on the peg
 
 		}
 

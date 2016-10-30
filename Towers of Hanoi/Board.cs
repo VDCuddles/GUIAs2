@@ -9,26 +9,35 @@ namespace Towers_of_Hanoi
 {
     class Board
     {
-        Disk[,] board; //condition says TWO dimentional array            
+		private const int NUM_DISKS = 4;
+		private const int NUM_PEGS = 3;
+		private const int poleStart = 126;
+		private const int poleGap = 180;
+		private const int deckHeight = 291;
+		private const int diskHeight = 24;
+
+		Disk[,] board; //condition says TWO dimentional array            
         ArrayList movements;
         Disk[] disks; //Array of disks
 		Disk diskToReturn;
-		int updateLevel = 3;
-		Disk oldDisk = null;
-		Disk newDisk = null;
-		int oldPos = 0;
-		int newPos = 0;
-		const int poleStart = 126;
-		const int poleGap = 180;
-		const int deckHeight = 291;
-		const int diskHeight = 24;
 
-		private const int NUM_DISKS = 4;
-        private const int NUM_PEGS = 3;
+		int updateLevel;
+		Disk oldDisk;
+		Disk newDisk;
+		int oldPos;
+		int newPos;
+
+
+
 
         public Board()
         {
-            board = new Disk[NUM_PEGS, NUM_DISKS];
+			updateLevel = 3;
+			oldDisk = null;
+			newDisk = null;
+			oldPos = 0;
+			newPos = 0;
+			board = new Disk[NUM_PEGS, NUM_DISKS];
             movements = new ArrayList();
 			diskToReturn = null;
 
@@ -119,6 +128,8 @@ namespace Towers_of_Hanoi
 
 			oldDisk = aDisk;
 			oldPos = aDisk.getPegNum();
+			board[oldDisk.getPegNum(), oldDisk.getLevel()] = null;
+
 			newDisk = aDisk;
 			newPos = aDisk.getPegNum();
 			newDisk.setPegNum(newLevel);
@@ -130,14 +141,15 @@ namespace Towers_of_Hanoi
 				{
 					updateLevel = i;
 					newDisk.setLevel(updateLevel);
-					//MessageBox.Show("Nothing stored at level " + (i));
 					break;
 				}
 
 			}
 
+
 			board[newLevel, updateLevel] = aDisk;
-			board[oldDisk.getPegNum(), oldDisk.getLevel()] = null;
+
+			MessageBox.Show("aDisk data:\r\r level:" + (aDisk.getLevel()) + "\r\rpeg:" + (aDisk.getPegNum()));
 
 		}
 
@@ -167,6 +179,26 @@ namespace Towers_of_Hanoi
 				"\r\r" + "newDisk.getLevel() = " + (newDisk.getLevel())
 				);
 
+
+			for (int ipole = 0; ipole < 3; ipole++)
+			{
+				for (int jlevel = 0; jlevel < 4; jlevel++)
+				{
+					if (board[ipole, jlevel] == null){
+
+						MessageBox.Show("no data at  board[" + (ipole) + "," + (jlevel) + "]");
+
+					}
+
+					else {
+						MessageBox.Show("level data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLevel().ToString() +
+							"\r\rlabel data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLabel().Name.ToString() +
+							"\r\rpeg data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getPegNum().ToString() +
+							"\r\rdiameter data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getDiameter().ToString()
+							);
+					}
+				}
+			}
 		}
 
 

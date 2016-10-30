@@ -10,10 +10,10 @@ namespace Towers_of_Hanoi
         private int diskInd;
         private int pegInd;
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public DiskMove()
+		/// <summary>
+		/// Default constructor
+		/// </summary>
+		public DiskMove()
         {
             diskInd = 0;
             pegInd = 0;
