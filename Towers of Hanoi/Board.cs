@@ -27,9 +27,6 @@ namespace Towers_of_Hanoi
 		int oldPos;
 		int newPos;
 
-
-
-
         public Board()
         {
 			updateLevel = 3;
