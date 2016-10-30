@@ -31,6 +31,7 @@ namespace Towers_of_Hanoi
 						new Disk(lblDisk4, 0, 0, 0)
 
 				);
+
 			diskmove = new DiskMove();
 		}
 
@@ -39,11 +40,20 @@ namespace Towers_of_Hanoi
 
 			Label alabel = (sender as Label);
 
+			Disk oldDiskState = board.FindDisk(alabel);
+
+			//int oldDiskPeg = board.FindDisk(alabel).getPegNum();
+
+			//MessageBox.Show("oldDisk.getDiameter() = " + (oldDiskState.getDiameter()) +
+			//	"\r\r" + "oldDisk.getPegNum() = " + (oldDiskState.getPegNum()) +
+			//	"\r\r" + "oldDisk.getLevel() = " + (oldDiskState.getLevel())
+			//	);
+
 			DragDropEffects result = alabel.DoDragDrop(alabel, DragDropEffects.All);
 			if (result != DragDropEffects.None)
 			{
 
-				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel)))
+				if (board.canDrop(oldDiskState, targetPole) && board.canStartMove(oldDiskState))
 				{
 
 					board.move(board.FindDisk(alabel), targetPole);

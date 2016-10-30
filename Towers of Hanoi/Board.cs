@@ -22,15 +22,13 @@ namespace Towers_of_Hanoi
 		Disk diskToReturn;
 
 		int updateLevel;
-		Disk oldDisk;
-		Disk newDisk;
-		int oldPos;
-		int newPos;
+		public Disk newDisk;
+		public int oldPos;
+		public int newPos;
 
 		public Board()
 		{
 			updateLevel = 3;
-			oldDisk = null;
 			newDisk = null;
 			oldPos = 0;
 			newPos = 0;
@@ -52,6 +50,8 @@ namespace Towers_of_Hanoi
 			board[0, 2] = new Disk();
 			board[0, 1] = new Disk();
 			board[0, 0] = new Disk();
+
+
 
 			//Creating arraylist of movement 
 			movements = new ArrayList();
@@ -120,12 +120,28 @@ namespace Towers_of_Hanoi
 		public bool canStartMove(Disk aDisk)
 		{
 
-			//if ((aDisk.getLevel() < 3) && (board[aDisk.getPegNum(), (aDisk.getLevel() + 1)] != null))
+
+			if ((aDisk.getLevel() < 3) && (board[aDisk.getPegNum(), (aDisk.getLevel() + 1)] != null))
+			{
+				return false;
+			}
+
+
+			else {
+				return true;
+			}
+
+		}
+
+
+		public bool canDrop(Disk aDisk, int aPeg)
+		{
+
+			//if ((newLevel > 0) && (disks[oldPole, oldLevel].thisDisk.Width > disks[newPole, newLevel - 1].thisDisk.Width))
 			//{
-			//	MessageBox.Show("Invalid Move - can only move top disk");
+			//	//MessageBox.Show("Invalid Move - cannot drop bigger disk on smaller");
 			//	return false;
 			//}
-
 
 			//else {
 			return true;
@@ -133,19 +149,11 @@ namespace Towers_of_Hanoi
 		}
 
 
-		public bool canDrop(Disk aDisk, int aPeg)
-		{
-
-
-			return true;
-		}
-
-
 		public void move(Disk aDisk, int newLevel)
 		{
 
-			oldDisk = aDisk;
-			oldPos = aDisk.getPegNum();
+			//oldDisk = board[aDisk.getPegNum(), aDisk.getLevel()];
+			//oldPos = board[aDisk.getPegNum(), aDisk.getLevel()].getPegNum() ;
 			board[aDisk.getPegNum(), aDisk.getLevel()] = null;
 
 			newDisk = aDisk;
