@@ -109,10 +109,19 @@ namespace Towers_of_Hanoi
 
 
         public bool canStartMove(Disk aDisk)
-        {
-                return true;
+		{
 
-        }
+			//if ((aDisk.getLevel() < 3) && (board[aDisk.getPegNum(), (aDisk.getLevel() + 1)] != null))
+			//{
+			//	MessageBox.Show("Invalid Move - can only move top disk");
+			//	return false;
+			//}
+
+
+			//else {
+			return true;
+			//}
+		}
 
 
         public bool canDrop(Disk aDisk, int aPeg)
@@ -149,7 +158,7 @@ namespace Towers_of_Hanoi
 
 			board[newLevel, updateLevel] = aDisk;
 
-			MessageBox.Show("aDisk data:\r\r level:" + (aDisk.getLevel()) + "\r\rpeg:" + (aDisk.getPegNum()));
+			//MessageBox.Show("aDisk data:\r\r level:" + (aDisk.getLevel()) + "\r\rpeg:" + (aDisk.getPegNum()));
 
 		}
 
@@ -162,10 +171,10 @@ namespace Towers_of_Hanoi
 
         public void Display()
         {
-			MessageBox.Show("oldDisk.getDiameter() = " + (oldDisk.getDiameter()) + 
-				"\r\r" + "oldDisk.getPegNum() = " + (oldDisk.getPegNum()) + 
-				"\r\r" + "oldDisk.getLevel() = " + (oldDisk.getLevel())
-				);
+			//MessageBox.Show("oldDisk.getDiameter() = " + (oldDisk.getDiameter()) +
+			//	"\r\r" + "oldDisk.getPegNum() = " + (oldDisk.getPegNum()) +
+			//	"\r\r" + "oldDisk.getLevel() = " + (oldDisk.getLevel())
+			//	);
 
 
 			oldDisk.getLabel().Hide();
@@ -175,30 +184,31 @@ namespace Towers_of_Hanoi
 
 
 
-			MessageBox.Show("newDisk.getPegNum() = " + (newDisk.getPegNum()) + 
-				"\r\r" + "newDisk.getLevel() = " + (newDisk.getLevel())
-				);
+			//MessageBox.Show("newDisk.getPegNum() = " + (newDisk.getPegNum()) +
+			//	"\r\r" + "newDisk.getLevel() = " + (newDisk.getLevel())
+			//	);
 
 
-			for (int ipole = 0; ipole < 3; ipole++)
-			{
-				for (int jlevel = 0; jlevel < 4; jlevel++)
-				{
-					if (board[ipole, jlevel] == null){
+			//for (int ipole = 0; ipole < 3; ipole++)
+			//{
+			//	for (int jlevel = 0; jlevel < 4; jlevel++)
+			//	{
+			//		if (board[ipole, jlevel] == null)
+			//		{
 
-						MessageBox.Show("no data at  board[" + (ipole) + "," + (jlevel) + "]");
+			//			MessageBox.Show("no data at  board[" + (ipole) + "," + (jlevel) + "]");
 
-					}
+			//		}
 
-					else {
-						MessageBox.Show("level data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLevel().ToString() +
-							"\r\rlabel data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLabel().Name.ToString() +
-							"\r\rpeg data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getPegNum().ToString() +
-							"\r\rdiameter data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getDiameter().ToString()
-							);
-					}
-				}
-			}
+			//		else {
+			//			MessageBox.Show("level data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLevel().ToString() +
+			//				"\r\rlabel data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getLabel().Name.ToString() +
+			//				"\r\rpeg data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getPegNum().ToString() +
+			//				"\r\rdiameter data at board[" + (ipole) + "," + (jlevel) + "]: " + board[ipole, jlevel].getDiameter().ToString()
+			//				);
+			//		}
+			//	}
+			//}
 		}
 
 

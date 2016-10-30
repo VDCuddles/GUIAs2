@@ -51,7 +51,7 @@ namespace Towers_of_Hanoi
 			DragDropEffects result = alabel.DoDragDrop(alabel, DragDropEffects.All);
 			if (result != DragDropEffects.None){
 
-				MessageBox.Show(targetPole.ToString());
+				//MessageBox.Show(targetPole.ToString());
 
 				if (board.canDrop(board.FindDisk(alabel), targetPole) && board.canStartMove(board.FindDisk(alabel))) { 
 
@@ -97,8 +97,9 @@ namespace Towers_of_Hanoi
 
 		private void btnReset_Click(object sender, EventArgs e)
 		{
+						board.reset();
+
 			ResetBoard();
-			txtMoveCount.Text = "0";
 		}
 
 		private void btnAnimate_Click(object sender, EventArgs e)
